@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#252f78">
+  <meta name="description" content="Julie Charitable Trust dog rescue case management">
+  <title>JCT Cases</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/jct-icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/jct-icon-192.png">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; background: #f2f6f8; color: #172b4d; }
+    .shell { display: flex; flex-direction: column; height: 100%; }
+    .bar { min-height: 48px; display: flex; align-items: center; gap: 10px; padding: 8px 14px; color: white; background: #252f78; }
+    .bar img { width: 32px; height: 32px; object-fit: contain; background: white; border-radius: 6px; }
+    .bar strong { font-size: 16px; }
+    .status { padding: 8px 12px; font-size: 13px; color: #475467; background: #fff; }
+    iframe { border: 0; width: 100%; flex: 1; min-height: 0; background: #f2f6f8; }
+    .fallback { padding: 14px; text-align: center; font-size: 13px; }
+    .fallback a { color: #252f78; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="bar">
+      <img src="./icons/jct-icon-192.png" alt="">
+      <strong>JCT Cases</strong>
+    </header>
+    <div class="status" id="status">Connecting to Julie Charitable Trust…</div>
+    <iframe id="app" title="JCT Cases" src="https://script.google.com/macros/s/AKfycbwrxE-UignTUAwfRCLRXyZ1TQLaf_Z6VLICvjaihZGnO_5RTns58a90qeKOwhDBzxRznQ/exec" allow="geolocation"></iframe>
+    <div class="fallback">If the app does not load, <a href="https://script.google.com/macros/s/AKfycbwrxE-UignTUAwfRCLRXyZ1TQLaf_Z6VLICvjaihZGnO_5RTns58a90qeKOwhDBzxRznQ/exec" target="_blank" rel="noopener">open JCT Cases directly</a>.</div>
+  </div>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+    const frame = document.getElementById("app");
+    frame.addEventListener("load", () => {
+      document.getElementById("status").textContent = "Julie Charitable Trust · Case Management";
+    });
+  </script>
+</body>
+</html>
